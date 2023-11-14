@@ -40,6 +40,10 @@ public class Lecture {
         this.regDate = registLectureRequestDto.getRegDate();
     }
 
+    public Lecture() {
+
+    }
+
     public void update(RegistLectureRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.price = requestDto.getPrice();

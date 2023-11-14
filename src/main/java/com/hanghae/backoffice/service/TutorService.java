@@ -25,14 +25,15 @@ public class TutorService {
     }
 
     public RegistTutorResponseDto getTutors(Long id) {
-        Tutor tutor = tutorRepository.findById(id).orElseThrow(()->
-                new IllegalArgumentException("등록되지 않은 사용자입니다.")
-                );
+        Tutor tutor = tutorRepository.findById(id).orElseThrow(() ->
+            new IllegalArgumentException("등록되지 않은 사용자입니다.")
+        );
         return new RegistTutorResponseDto(tutor);
     }
 
     @Transactional
-    public RegistTutorResponseDto updateTutors(Long id, RegistTutorRequestDto registTutorRequestDto ) {
+    public RegistTutorResponseDto updateTutors(Long id,
+        RegistTutorRequestDto registTutorRequestDto) {
         Tutor tutor = tutorRepository.findById(id).orElseThrow(() ->
             new IllegalArgumentException("등록되지 않은 사용자입니다.")
         );
@@ -41,17 +42,14 @@ public class TutorService {
     }
 
 
-
     public String deleteTutors(Long id) {
         Tutor tutor = tutorRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("등록되지 않은 사용자입니다.")
+            new IllegalArgumentException("등록되지 않은 사용자입니다.")
         );
         tutorRepository.delete(tutor);
         return "삭제되었습니다.";
-
+    }
     public List<TutorsLectureResponseDto> getTutorsLecture(Long tutorsId) {
         return tutorRepository.findByIdOrderByLectureList_RegDateDesc(tutorsId).stream().map(TutorsLectureResponseDto::new).toList();
     }
-
-
 }

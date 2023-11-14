@@ -54,8 +54,8 @@ public class AuthFilter implements Filter {
                     new NullPointerException("Not Found User")
                 );
 
-                if (StringUtils.hasText(url) && (httpServletRequest.getMethod().equals("PUT")) &&
-                    (url.startsWith("/s/") || url.startsWith("/lectures/"))){
+                if (StringUtils.hasText(url) && ((httpServletRequest.getMethod().equals("PUT")) || (httpServletRequest.getMethod().equals("DELETE"))) &&
+                    (url.startsWith("/tutors/") || url.startsWith("/lectures/"))){
                     String authority = (String) info.get(JwtUtil.AUTHORIZATION_KEY);
 
                     if (!Objects.equals(authority, AdminRoleEnum.MANAGER.getAuthority())) {
