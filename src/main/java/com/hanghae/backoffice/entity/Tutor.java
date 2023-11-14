@@ -22,7 +22,7 @@ public class Tutor {
     private String phone;
     private String intro;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "lecture_id")
     private List<Lecture> lectureList = new ArrayList<>();
 }
