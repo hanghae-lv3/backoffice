@@ -24,6 +24,10 @@ public class Lecture {
     private String category;
     private LocalDateTime regDate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tutor_id")
+    private Tutor tutor;
+
 
 
 }
