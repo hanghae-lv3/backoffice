@@ -1,9 +1,12 @@
 package com.hanghae.backoffice.service;
 
+import com.hanghae.backoffice.dto.RegistLectureResponseDto;
 import com.hanghae.backoffice.dto.RegistTutorRequestDto;
 import com.hanghae.backoffice.dto.RegistTutorResponseDto;
+import com.hanghae.backoffice.dto.TutorsLectureResponseDto;
 import com.hanghae.backoffice.entity.Tutor;
 import com.hanghae.backoffice.repository.TutorRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,10 +33,13 @@ public class TutorService {
 
     @Transactional
     public RegistTutorResponseDto updateTutors(Long id, RegistTutorRequestDto registTutorRequestDto ) {
-        Tutor tutor = tutorRepository.findById(id).orElseThrow(()->
-                new IllegalArgumentException("등록되지 않은 사용자입니다.")
+        Tutor tutor = tutorRepository.findById(id).orElseThrow(() ->
+            new IllegalArgumentException("등록되지 않은 사용자입니다.")
         );
         tutor.update(registTutorRequestDto);
+        return new RegistTutorResponseDto(tutor);
+    }
+
 
 
     public String deleteTutors(Long id) {
@@ -42,6 +48,9 @@ public class TutorService {
         );
         tutorRepository.delete(tutor);
         return "삭제되었습니다.";
+
+    public List<TutorsLectureResponseDto> getTutorsLecture(Long tutorsId) {
+        return tutorRepository.findByIdOrderByLectureList_RegDateDesc(tutorsId).stream().map(TutorsLectureResponseDto::new).toList();
     }
 
 

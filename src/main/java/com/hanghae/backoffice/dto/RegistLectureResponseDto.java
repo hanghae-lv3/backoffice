@@ -3,24 +3,27 @@ package com.hanghae.backoffice.dto;
 import com.hanghae.backoffice.entity.Lecture;
 import com.hanghae.backoffice.entity.Tutor;
 import java.time.LocalDateTime;
+
+
+import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
-@NoArgsConstructor
+@Setter
 public class RegistLectureResponseDto {
-    private String name;
-    private Long price;
-    private String intro;
+    private String title;
+    private Integer price;
     private String category;
+    private String intro;
     private LocalDateTime regDate;
     private Tutor tutor;
 
     public RegistLectureResponseDto(Lecture lecture) {
-        this.name = lecture.getName();
-        this.price = lecture.getPrice();
+        this.title = lecture.getTitle();
         this.intro = lecture.getIntro();
         this.category = lecture.getCategory();
+        this.price = lecture.getPrice();
         this.regDate = lecture.getRegDate();
     }
 }
