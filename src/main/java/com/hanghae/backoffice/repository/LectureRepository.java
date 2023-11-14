@@ -1,8 +1,17 @@
 package com.hanghae.backoffice.repository;
 
+import com.hanghae.backoffice.dto.RegistLectureRequestDto;
+import com.hanghae.backoffice.dto.RegistLectureResponseDto;
 import com.hanghae.backoffice.entity.Lecture;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
 
+    Optional<Lecture> findAllByTutorIDOrderByRegDateDesc(Long tutorsId);
 }

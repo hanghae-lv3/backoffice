@@ -11,6 +11,5 @@ public class RegistLectureResponseDto {
     private String intro;
     private String category;
     private LocalDateTime regDate;
-
     private Tutor tutor;
 }
