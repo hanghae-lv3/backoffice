@@ -61,4 +61,9 @@ public class LectureController {
     public ResponseEntity<List<TutorsLectureResponseDto>> getTutorsLecture(@PathVariable Long tutorsId) {
         return new ResponseEntity<>(lectureService.getTutorsLecture(tutorsId), HttpStatus.OK);
     }
+
+    @DeleteMapping("/lectures/{id}")
+    public Long deleteLecture(@PathVariable Long id) {
+        return lectureService.deleteLecture(id);
+    }
 }

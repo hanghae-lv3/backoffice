@@ -35,7 +35,7 @@ public class AuthFilter implements Filter {
         String url = httpServletRequest.getRequestURI();
 
         if (StringUtils.hasText(url) && (url.startsWith("/signup") || url.startsWith("/signin")))
-// swagger 버전 (url.startsWith("/signup") || url.startsWith("/signin") || url.startsWith("/swagger-ui/**") || url.startsWith("/") || url.startsWith("/v3/api-docs/**")))
+        // if(url.startsWith("/signup") || url.startsWith("/signin") || url.startsWith("/swagger-ui/**") || url.startsWith("/") || url.startsWith("/v3/api-docs/**")) // swagger 버전
          {
             chain.doFilter(request, response);
         } else {

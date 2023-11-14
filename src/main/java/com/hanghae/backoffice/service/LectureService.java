@@ -58,11 +58,6 @@ public class LectureService {
 
         return new LectureUpdateResponseDto(lecture);
     }
-    private Lecture findLecture(Long id) {
-        return lectureRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("선택한 강의는 없습니다")
-        );
-    }
 
     public RegistLectureResponseDto getLectureById(Long id) {
         Lecture lecture = findLecture(id);
@@ -90,6 +85,12 @@ public class LectureService {
             .collect(Collectors.toList());
     }
 
+    public Long deleteLecture(Long id) {
+        Lecture lecture = findLecture(id);
+        lectureRepository.delete(lecture);
+        return id;
+    }
+
 
     private Tutor findById(Long tutorId) {
         return tutorRepository.findByid(tutorId).orElseThrow(() ->
@@ -100,6 +101,12 @@ public class LectureService {
     private Lecture findByLectureId(Long lectureId) {
         return lectureRepository.findByid(lectureId).orElseThrow(() ->
             new IllegalArgumentException("존재하지 않는 강의입니다.")
+        );
+    }
+
+    private Lecture findLecture(Long id) {
+        return lectureRepository.findById(id).orElseThrow(() ->
+            new IllegalArgumentException("선택한 강의는 없습니다")
         );
     }
 }
