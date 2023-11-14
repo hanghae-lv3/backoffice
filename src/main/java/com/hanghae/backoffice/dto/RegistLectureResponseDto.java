@@ -4,17 +4,19 @@ import com.hanghae.backoffice.entity.Lecture;
 import com.hanghae.backoffice.entity.Tutor;
 import java.time.LocalDateTime;
 
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Data
+
 public class RegistLectureResponseDto {
-    private String name;
-    private Long price;
-    private String intro;
+    private String title;
+    private Integer price;
     private String category;
+
     private LocalDateTime regDate;
     private Tutor tutor;
 

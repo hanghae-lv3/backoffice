@@ -34,9 +34,9 @@ public class AuthFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String url = httpServletRequest.getRequestURI();
 
-        if (StringUtils.hasText(url) &&
-            (url.startsWith("/signup") || url.startsWith("/signin"))
-        ) {
+        if (StringUtils.hasText(url) && (url.startsWith("/signup") || url.startsWith("/signin")))
+// swagger 버전 (url.startsWith("/signup") || url.startsWith("/signin") || url.startsWith("/swagger-ui/**") || url.startsWith("/") || url.startsWith("/v3/api-docs/**")))
+         {
             chain.doFilter(request, response);
         } else {
             String tokenValue = jwtUtil.getTokenFromRequest(httpServletRequest);
@@ -55,7 +55,7 @@ public class AuthFilter implements Filter {
                 );
 
                 if (StringUtils.hasText(url) && (httpServletRequest.getMethod().equals("PUT")) &&
-                    (url.startsWith("/tutors/") || url.startsWith("/lectures/"))){
+                    (url.startsWith("/s/") || url.startsWith("/lectures/"))){
                     String authority = (String) info.get(JwtUtil.AUTHORIZATION_KEY);
 
                     if (!Objects.equals(authority, AdminRoleEnum.MANAGER.getAuthority())) {
