@@ -10,15 +10,17 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class TutorsLectureResponseDto {
-    private String name;
-    private Long price;
+    private String title;
+    private Integer price;
     private String intro;
     private String category;
     private LocalDateTime regDate;
-    private List<Lecture> lectures;
 
-    public TutorsLectureResponseDto(Tutor tutor) {
-        this.name = tutor.getName();
-        this.lectures = tutor.getLectures();
+    public TutorsLectureResponseDto(Lecture lecture) {
+        this.title = lecture.getTitle();
+        this.price = lecture.getPrice();
+        this.intro = lecture.getIntro();
+        this.category = lecture.getCategory();
+        this.regDate = lecture.getRegDate();
     }
 }
