@@ -4,10 +4,8 @@ import com.hanghae.backoffice.dto.RegistTutorRequestDto;
 import com.hanghae.backoffice.dto.RegistTutorResponseDto;
 import com.hanghae.backoffice.entity.Tutor;
 import com.hanghae.backoffice.repository.TutorRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TutorService {
@@ -30,5 +28,13 @@ public class TutorService {
         return new RegistTutorResponseDto(tutor);
     }
 
+    @Transactional
+    public RegistTutorResponseDto updateTutors(Long id, RegistTutorRequestDto registTutorRequestDto ) {
+        Tutor tutor = tutorRepository.findById(id).orElseThrow(()->
+                new IllegalArgumentException("등록되지 않은 사용자입니다.")
+        );
+        tutor.update(registTutorRequestDto);
 
+
+    }
 }
