@@ -15,6 +15,5 @@ public class RegistLectureRequestDto {
     private Integer price;
     private String intro;
     private String category;
-    private LocalDateTime regDate;
-    private String tutorName;
+    private Long tutorId;
 }
