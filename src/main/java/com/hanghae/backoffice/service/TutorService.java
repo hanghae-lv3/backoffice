@@ -5,9 +5,13 @@ import com.hanghae.backoffice.dto.RegistTutorResponseDto;
 import com.hanghae.backoffice.entity.Lecture;
 import com.hanghae.backoffice.entity.Tutor;
 import com.hanghae.backoffice.repository.TutorRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class TutorService {
@@ -22,4 +26,14 @@ public class TutorService {
         Tutor tutor = new Tutor(registTutorRequestDto);
         return new RegistTutorResponseDto(tutorRepository.save(tutor));
     }
+
+    public RegistTutorResponseDto getTutors(Long id) {
+        Optional<Tutor> tutor = tutorRepository.findById(id);
+
+        if(tutor.isPresent()){
+            return new RegistTutorResponseDto(tutor.get());
+        }
+        throw new EntityNotFoundException("등록되지 않은 강사입니다.");
+    }
+
 }
