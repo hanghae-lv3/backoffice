@@ -2,12 +2,12 @@ package com.hanghae.backoffice.service;
 
 import com.hanghae.backoffice.dto.RegistTutorRequestDto;
 import com.hanghae.backoffice.dto.RegistTutorResponseDto;
-import com.hanghae.backoffice.entity.Lecture;
 import com.hanghae.backoffice.entity.Tutor;
 import com.hanghae.backoffice.repository.TutorRepository;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.http.ResponseEntity;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class TutorService {
@@ -22,4 +22,13 @@ public class TutorService {
         Tutor tutor = new Tutor(registTutorRequestDto);
         return new RegistTutorResponseDto(tutorRepository.save(tutor));
     }
+
+    public RegistTutorResponseDto getTutors(Long id) {
+        Tutor tutor = tutorRepository.findById(id).orElseThrow(()->
+                new IllegalArgumentException("등록되지 않은 사용자입니다.")
+                );
+        return new RegistTutorResponseDto(tutor);
+    }
+
+
 }
