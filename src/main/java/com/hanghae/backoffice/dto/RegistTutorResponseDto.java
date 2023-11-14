@@ -15,7 +15,7 @@ public class RegistTutorResponseDto {
         this.name = tutor.getName();
         this.career = tutor.getCareer();
         this.company = tutor.getCompany();
-        this.phone = tutor.getCompany();
+        this.phone = tutor.getPhone();
         this.intro = tutor.getIntro();
     }
 }

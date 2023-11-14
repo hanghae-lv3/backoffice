@@ -4,9 +4,11 @@ import com.hanghae.backoffice.dto.RegistLectureRequestDto;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+
 import java.util.Date;
 
 import lombok.Data;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,12 +20,14 @@ public class Lecture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private Long price;
+    private String title;
+    private String tutorName;
+    private Integer price;
     private String intro;
     private String category;
     @Column(name = "reg_date")
     private LocalDateTime regDate;
+
     public Lecture(RegistLectureRequestDto registLectureRequestDto) {
         this.name = registLectureRequestDto.getName();
         this.price = registLectureRequestDto.getPrice();
@@ -38,4 +42,5 @@ public class Lecture {
         this.intro = requestDto.getIntro();
         this.category = requestDto.getCategory();
     }
+
 }

@@ -1,5 +1,6 @@
 package com.hanghae.backoffice.controller;
 
+
 import com.hanghae.backoffice.dto.RegistLectureRequestDto;
 import com.hanghae.backoffice.dto.RegistLectureResponseDto;
 import com.hanghae.backoffice.entity.Lecture;
@@ -9,12 +10,16 @@ import com.hanghae.backoffice.service.LectureService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @RestController
+
 @RequestMapping("/lecture")
 
 public class LectureController {
+    private final LectureService lectureService;
+
 
     private final LectureService lectureService;
     private final JwtUtil jwtUtil;
@@ -51,6 +56,8 @@ public class LectureController {
     @GetMapping("/category")
     public List<RegistLectureResponseDto> getLecturesByCategory(@RequestParam String category) {
         return lectureService.getLecturesByCategory(category);
+
+
     }
     @DeleteMapping("/{id}")
     public Long deleteLecture(@PathVariable Long id) {
