@@ -5,16 +5,17 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-import java.util.Date;
 
 import lombok.Data;
-
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
 @Entity
 @Table(name = "lecture")
+@EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor
 public class Lecture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,24 +26,13 @@ public class Lecture {
     private Integer price;
     private String intro;
     private String category;
-    @Column(name = "reg_date")
+
+    @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime regDate;
 
     @ManyToOne
     private Tutor tutor;
-
-    public Lecture(RegistLectureRequestDto registLectureRequestDto) {
-        this.title = registLectureRequestDto.getTitle();
-        this.price = registLectureRequestDto.getPrice();
-        this.intro = registLectureRequestDto.getIntro();
-        this.category = registLectureRequestDto.getCategory();
-//        this.tutor = registLectureRequestDto.getTutorName();
-        this.regDate = registLectureRequestDto.getRegDate();
-    }
-
-    public Lecture() {
-
-    }
 
     public void update(RegistLectureRequestDto requestDto) {
         this.title = requestDto.getTitle();
