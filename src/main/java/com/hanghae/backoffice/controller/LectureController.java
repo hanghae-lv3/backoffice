@@ -3,19 +3,15 @@ package com.hanghae.backoffice.controller;
 
 import com.hanghae.backoffice.dto.RegistLectureRequestDto;
 import com.hanghae.backoffice.dto.RegistLectureResponseDto;
+import com.hanghae.backoffice.dto.TutorsLectureResponseDto;
 import com.hanghae.backoffice.entity.Lecture;
-import com.hanghae.backoffice.jwt.JwtUtil;
-import com.hanghae.backoffice.repository.LectureRepository;
 import com.hanghae.backoffice.service.LectureService;
-import org.springframework.security.access.annotation.Secured;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.List;
-
 @RestController
-
-@RequestMapping("/lecture")
 
 public class LectureController {
 
@@ -30,29 +26,38 @@ public class LectureController {
     // 강의 등록
 
 
-    @PostMapping
-    public void registerLecture(@RequestBody RegistLectureRequestDto requestDto) {
-        lectureService.registerLecture(requestDto);
+    @PostMapping("/lectures")
+    public ResponseEntity<String> registerLecture(@RequestBody RegistLectureRequestDto requestDto) {
+        String successMessage = lectureService.registerLecture(requestDto);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .header(
+                HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE + ";charset=" + StandardCharsets.UTF_8)
+            .body(successMessage);
+
     }
 
-    @GetMapping
+    @GetMapping("/lectures")
     public List<Lecture> getAllLectures() {
         return lectureService.getAllLectures();
     }
-    @Secured("ROLE_MANAGER")
-    @PutMapping("/{id}")
+
+    @PutMapping("/lectures/{id}")
     public Long updateLecture(Long id, @RequestBody RegistLectureRequestDto requestDto) {
         return lectureService.updateLecture(id, requestDto);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/lectures/{id}")
     public RegistLectureResponseDto getLectureById(@PathVariable Long id) {
         return lectureService.getLectureById(id);
     }
 
-    @GetMapping("/category")
+    @GetMapping("/lectures/category")
     public List<RegistLectureResponseDto> getLecturesByCategory(@RequestParam String category) {
         return lectureService.getLecturesByCategory(category);
+    }
 
-
+    @GetMapping("/lectures/{tutorsId}/lecture")
+    public ResponseEntity<List<TutorsLectureResponseDto>> getTutorsLecture(@PathVariable Long tutorsId) {
+        return new ResponseEntity<>(lectureService.getTutorsLecture(tutorsId), HttpStatus.OK);
     }
 }

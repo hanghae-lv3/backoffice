@@ -4,9 +4,12 @@ import com.hanghae.backoffice.dto.RegistLectureResponseDto;
 import com.hanghae.backoffice.dto.RegistTutorRequestDto;
 import com.hanghae.backoffice.dto.RegistTutorResponseDto;
 import com.hanghae.backoffice.dto.TutorsLectureResponseDto;
+import com.hanghae.backoffice.entity.Lecture;
 import com.hanghae.backoffice.entity.Tutor;
 import com.hanghae.backoffice.repository.TutorRepository;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,7 +52,5 @@ public class TutorService {
         tutorRepository.delete(tutor);
         return "삭제되었습니다.";
     }
-    public List<TutorsLectureResponseDto> getTutorsLecture(Long tutorsId) {
-        return tutorRepository.findByIdOrderByLectureList_RegDateDesc(tutorsId).stream().map(TutorsLectureResponseDto::new).toList();
-    }
+
 }

@@ -42,9 +42,5 @@ public class TutorController {
         return new ResponseEntity<>(tutorService.deleteTutors(id), HttpStatus.OK);
     }
 
-    @GetMapping("/lecture/{tutorsId}")
-    public ResponseEntity<List<TutorsLectureResponseDto>> getTutorsLecture(@PathVariable Long tutorsId) {
-        return new ResponseEntity<>(tutorService.getTutorsLecture(tutorsId), HttpStatus.OK);
-    }
 
 }
