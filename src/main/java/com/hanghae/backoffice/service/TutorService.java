@@ -25,7 +25,6 @@ public class TutorService {
 
     public RegistTutorResponseDto getTutors(Long id) {
         Optional<Tutor> tutor = tutorRepository.findById(id);
-
         if(tutor.isPresent()){
             return new RegistTutorResponseDto(tutor.get());
         }
