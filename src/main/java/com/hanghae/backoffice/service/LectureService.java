@@ -11,15 +11,5 @@ import java.util.Optional;
 
 @Service
 public class LectureService {
-    private final LectureRepository lectureRepository;
 
-
-    public LectureService(LectureRepository lectureRepository) {
-        this.lectureRepository = lectureRepository;
-    }
-
-    public List<RegistLectureResponseDto> getTutorsLecture(Long tutorsId) {
-        return lectureRepository.findByTutor_TutorIdOrderByRegDateDesc(tutorsId).stream().map(RegistLectureResponseDto::new).toList();
-
-    }
 }

@@ -13,5 +13,5 @@ import java.util.Optional;
 @Repository
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
 
-    List<Lecture> findByTutor_TutorIdOrderByRegDateDesc(Long tutorsId);
+
 }

@@ -17,9 +17,4 @@ public class LectureController {
     public LectureController(LectureService lectureService) {
         this.lectureService = lectureService;
     }
-
-    @GetMapping("/lecture/{tutorsId}")
-    public ResponseEntity<List<RegistLectureResponseDto>> getTutorsLecture(@PathVariable Long tutorsId) {
-        return new ResponseEntity<>(lectureService.getTutorsLecture(tutorsId), HttpStatus.OK);
-    }
 }

@@ -3,8 +3,6 @@ package com.hanghae.backoffice.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,16 +16,10 @@ public class Lecture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private Long price;
+    private String title;
+    private String tutorName;
+    private Integer price;
     private String intro;
     private String category;
     private LocalDateTime regDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tutor_id")
-    private Tutor tutor;
-
-
-
 }

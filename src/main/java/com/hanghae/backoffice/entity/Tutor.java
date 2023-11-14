@@ -1,5 +1,6 @@
 package com.hanghae.backoffice.entity;
 
+import com.hanghae.backoffice.dto.RegistLectureResponseDto;
 import com.hanghae.backoffice.dto.RegistTutorRequestDto;
 import jakarta.persistence.*;
 
@@ -25,8 +26,10 @@ public class Tutor {
     private String phone;
     private String intro;
 
-    @OneToMany(mappedBy="lecture")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lecture_id")
     private List<Lecture> lectureList = new ArrayList<>();
+
 
     public Tutor(RegistTutorRequestDto registTutorRequestDto) {
         this.name = registTutorRequestDto.getName();
@@ -41,5 +44,9 @@ public class Tutor {
         this.company = registTutorRequestDto.getCompany();
         this.phone = registTutorRequestDto.getPhone();
         this.intro = registTutorRequestDto.getIntro();
+    }
+
+    public List<Lecture> getLectures() {
+        return lectureList;
     }
 }

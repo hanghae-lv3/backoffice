@@ -1,8 +1,11 @@
 package com.hanghae.backoffice.controller;
 
+import com.hanghae.backoffice.dto.RegistLectureResponseDto;
 import com.hanghae.backoffice.dto.RegistTutorRequestDto;
 import com.hanghae.backoffice.dto.RegistTutorResponseDto;
+import com.hanghae.backoffice.dto.TutorsLectureResponseDto;
 import com.hanghae.backoffice.service.TutorService;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +33,8 @@ public class TutorController {
         return new ResponseEntity<>(tutorService.updateTutors(id, registTutorRequestDto), HttpStatus.OK);
     }
 
-
+    @GetMapping("/lecture/{tutorsId}")
+    public ResponseEntity<List<TutorsLectureResponseDto>> getTutorsLecture(@PathVariable Long tutorsId) {
+        return new ResponseEntity<>(tutorService.getTutorsLecture(tutorsId), HttpStatus.OK);
+    }
 }
