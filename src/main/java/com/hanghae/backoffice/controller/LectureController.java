@@ -15,16 +15,13 @@ import java.util.List;
 
 @RestController
 
-@RequestMapping("/lecture")
+@RequestMapping("/lectures")
 
 public class LectureController {
     private final LectureService lectureService;
 
-
-    private final LectureService lectureService;
     private final JwtUtil jwtUtil;
     private final LectureRepository lectureRepository;
-
 
     public LectureController(LectureService lectureService, JwtUtil jwtUtil, LectureRepository lectureRepository) {
         this.lectureService = lectureService;
@@ -32,7 +29,6 @@ public class LectureController {
         this.lectureRepository = lectureRepository;
     }
     // 강의 등록
-
 
     @PostMapping
     public void registerLecture(@RequestBody RegistLectureRequestDto requestDto) {
@@ -43,11 +39,12 @@ public class LectureController {
     public List<Lecture> getAllLectures() {
         return lectureService.getAllLectures();
     }
-    @Secured("ROLE_MANAGER")
+
     @PutMapping("/{id}")
     public Long updateLecture(Long id, @RequestBody RegistLectureRequestDto requestDto) {
         return lectureService.updateLecture(id, requestDto);
     }
+
     @GetMapping("/{id}")
     public RegistLectureResponseDto getLectureById(@PathVariable Long id) {
         return lectureService.getLectureById(id);
@@ -56,9 +53,8 @@ public class LectureController {
     @GetMapping("/category")
     public List<RegistLectureResponseDto> getLecturesByCategory(@RequestParam String category) {
         return lectureService.getLecturesByCategory(category);
-
-
     }
+
     @DeleteMapping("/{id}")
     public Long deleteLecture(@PathVariable Long id) {
         return lectureService.deleteLecture(id);

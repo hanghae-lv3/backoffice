@@ -31,9 +31,11 @@ public class LectureService {
         Lecture lecture = new Lecture(requestDto);
         lectureRepository.save(lecture);
     }
+
     public List<Lecture> getAllLectures() {
         return lectureRepository.findAll();
     }
+
     public Long updateLecture(Long id, RegistLectureRequestDto requestDto) {
         // 매니저 권한 확인
 
@@ -42,6 +44,7 @@ public class LectureService {
         lecture.update(requestDto);
         return id;
     }
+
     private Lecture findLecture(Long id) {
         return lectureRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("선택한 강의는 없습니다")
