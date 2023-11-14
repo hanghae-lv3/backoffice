@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class TutorController {
-    private final TutorSerVice tutorService;
+    private final TutorService tutorService;
 
     public TutorController(TutorService tutorService) {
         this.tutorService = tutorService;

@@ -30,11 +30,10 @@ public class TutorService {
 
     @Transactional
     public RegistTutorResponseDto updateTutors(Long id, RegistTutorRequestDto registTutorRequestDto ) {
-        Tutor tutor = tutorRepository.findById(id).orElseThrow(()->
-                new IllegalArgumentException("등록되지 않은 사용자입니다.")
+        Tutor tutor = tutorRepository.findById(id).orElseThrow(() ->
+            new IllegalArgumentException("등록되지 않은 사용자입니다.")
         );
         tutor.update(registTutorRequestDto);
-
-
+        return new RegistTutorResponseDto(tutor);
     }
 }
