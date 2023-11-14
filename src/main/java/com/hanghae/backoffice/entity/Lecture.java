@@ -21,23 +21,27 @@ public class Lecture {
     private Long id;
 
     private String title;
-    private String tutorName;
+
     private Integer price;
     private String intro;
     private String category;
     @Column(name = "reg_date")
     private LocalDateTime regDate;
 
+    @ManyToOne
+    private Tutor tutor;
+
     public Lecture(RegistLectureRequestDto registLectureRequestDto) {
-        this.name = registLectureRequestDto.getName();
+        this.title = registLectureRequestDto.getTitle();
         this.price = registLectureRequestDto.getPrice();
         this.intro = registLectureRequestDto.getIntro();
         this.category = registLectureRequestDto.getCategory();
+//        this.tutor = registLectureRequestDto.getTutorName();
         this.regDate = registLectureRequestDto.getRegDate();
     }
 
     public void update(RegistLectureRequestDto requestDto) {
-        this.name = requestDto.getName();
+        this.title = requestDto.getTitle();
         this.price = requestDto.getPrice();
         this.intro = requestDto.getIntro();
         this.category = requestDto.getCategory();

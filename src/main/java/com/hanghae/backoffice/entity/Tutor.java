@@ -26,8 +26,7 @@ public class Tutor {
     private String phone;
     private String intro;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lecture_id")
+    @OneToMany(mappedBy = "tutor")
     private List<Lecture> lectureList = new ArrayList<>();
 
 

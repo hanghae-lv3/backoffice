@@ -18,18 +18,14 @@ import java.util.List;
 @RequestMapping("/lecture")
 
 public class LectureController {
-    private final LectureService lectureService;
-
 
     private final LectureService lectureService;
-    private final JwtUtil jwtUtil;
-    private final LectureRepository lectureRepository;
 
 
-    public LectureController(LectureService lectureService, JwtUtil jwtUtil, LectureRepository lectureRepository) {
+
+    public LectureController(LectureService lectureService) {
         this.lectureService = lectureService;
-        this.jwtUtil = jwtUtil;
-        this.lectureRepository = lectureRepository;
+
     }
     // 강의 등록
 

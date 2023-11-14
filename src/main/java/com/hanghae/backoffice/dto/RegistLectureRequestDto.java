@@ -11,10 +11,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RegistLectureRequestDto {
-    private String name;
-    private Long price;
+    private String title;
+    private Integer price;
     private String intro;
     private String category;
     private LocalDateTime regDate;
-    private Tutor tutor;
+    private String tutorName;
 }
