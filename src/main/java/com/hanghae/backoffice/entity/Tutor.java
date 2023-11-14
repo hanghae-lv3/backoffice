@@ -25,7 +25,7 @@ public class Tutor {
     private String phone;
     private String intro;
 
-    @OneToMany(mappedBy="lecture")
+    @OneToMany(mappedBy="lecture", orphanRemoval = true)
     private List<Lecture> lectureList = new ArrayList<>();
 
     public Tutor(RegistTutorRequestDto registTutorRequestDto) {

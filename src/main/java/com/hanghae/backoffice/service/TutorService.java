@@ -36,5 +36,13 @@ public class TutorService {
         tutor.update(registTutorRequestDto);
 
 
+    public String deleteTutors(Long id) {
+        Tutor tutor = tutorRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("등록되지 않은 사용자입니다.")
+        );
+        tutorRepository.delete(tutor);
+        return "삭제되었습니다.";
     }
+
+
 }
