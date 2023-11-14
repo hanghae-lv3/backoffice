@@ -52,4 +52,8 @@ public class LectureController {
     public List<RegistLectureResponseDto> getLecturesByCategory(@RequestParam String category) {
         return lectureService.getLecturesByCategory(category);
     }
+    @DeleteMapping("/{id}")
+    public Long deleteLecture(@PathVariable Long id) {
+        return lectureService.deleteLecture(id);
+    }
 }

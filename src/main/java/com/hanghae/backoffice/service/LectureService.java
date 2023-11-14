@@ -64,4 +64,9 @@ public class LectureService {
                 .collect(Collectors.toList());
     }
 
+    public Long deleteLecture(Long id) {
+        Lecture lecture = findLecture(id);
+        lectureRepository.delete(lecture);
+        return id;
+    }
 }
