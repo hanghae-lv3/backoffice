@@ -36,4 +36,11 @@ public class Tutor {
         this.phone = registTutorRequestDto.getPhone();
         this.intro = registTutorRequestDto.getIntro();
     }
+
+    public void update(RegistTutorRequestDto registTutorRequestDto) {
+        this.career = registTutorRequestDto.getCareer();
+        this.company = registTutorRequestDto.getCompany();
+        this.phone = registTutorRequestDto.getPhone();
+        this.intro = registTutorRequestDto.getIntro();
+    }
 }

@@ -25,4 +25,11 @@ public class TutorController {
         return new ResponseEntity<>(tutorService.getTutors(id), HttpStatus.OK);
     }
 
+    @PutMapping("/tutors/{id}")
+    public ResponseEntity<RegistTutorResponseDto> updateTutors(@PathVariable Long id, @RequestBody RegistTutorRequestDto registTutorRequestDto) {
+        return new ResponseEntity<>(tutorService.updateTutors(id, registTutorRequestDto), HttpStatus.OK);
+    }
+
+
+
 }
