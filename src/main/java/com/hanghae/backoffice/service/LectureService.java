@@ -1,6 +1,7 @@
 package com.hanghae.backoffice.service;
 
 
+import com.hanghae.backoffice.dto.LectureUpdateResponseDto;
 import com.hanghae.backoffice.dto.RegistLectureRequestDto;
 import com.hanghae.backoffice.dto.RegistLectureResponseDto;
 import com.hanghae.backoffice.dto.TutorsLectureResponseDto;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -48,13 +50,13 @@ public class LectureService {
     public List<Lecture> getAllLectures() {
         return lectureRepository.findAll();
     }
-    public Long updateLecture(Long id, RegistLectureRequestDto requestDto) {
-        // 매니저 권한 확인
 
-        // 해당 강의가 DB에 있는지 확인
-        Lecture lecture = findLecture(id);
+    @Transactional
+    public LectureUpdateResponseDto updateLecture(Long id, RegistLectureRequestDto requestDto) {
+        Lecture lecture = findByLectureId(id);
         lecture.update(requestDto);
-        return id;
+
+        return new LectureUpdateResponseDto(lecture);
     }
     private Lecture findLecture(Long id) {
         return lectureRepository.findById(id).orElseThrow(() ->
@@ -92,6 +94,12 @@ public class LectureService {
     private Tutor findById(Long tutorId) {
         return tutorRepository.findByid(tutorId).orElseThrow(() ->
             new IllegalArgumentException("존재하지 않는 강사입니다.")
+        );
+    }
+
+    private Lecture findByLectureId(Long lectureId) {
+        return lectureRepository.findByid(lectureId).orElseThrow(() ->
+            new IllegalArgumentException("존재하지 않는 강의입니다.")
         );
     }
 }

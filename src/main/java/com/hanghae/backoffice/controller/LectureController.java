@@ -1,6 +1,7 @@
 package com.hanghae.backoffice.controller;
 
 
+import com.hanghae.backoffice.dto.LectureUpdateResponseDto;
 import com.hanghae.backoffice.dto.RegistLectureRequestDto;
 import com.hanghae.backoffice.dto.RegistLectureResponseDto;
 import com.hanghae.backoffice.dto.TutorsLectureResponseDto;
@@ -43,7 +44,7 @@ public class LectureController {
     }
 
     @PutMapping("/lectures/{id}")
-    public Long updateLecture(Long id, @RequestBody RegistLectureRequestDto requestDto) {
+    public LectureUpdateResponseDto updateLecture(@PathVariable Long id, @RequestBody RegistLectureRequestDto requestDto) {
         return lectureService.updateLecture(id, requestDto);
     }
     @GetMapping("/lectures/{id}")
