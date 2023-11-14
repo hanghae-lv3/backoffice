@@ -30,5 +30,13 @@ public class TutorController {
         return new ResponseEntity<>(tutorService.updateTutors(id, registTutorRequestDto), HttpStatus.OK);
     }
 
+    @DeleteMapping("/tutors/{id}")
+    public ResponseEntity<String> deleteTutors(@PathVariable Long id) {
+        return new ResponseEntity<>(tutorService.deleteTutors(id), HttpStatus.OK);
+    }
+
+
+
+
 
 }
