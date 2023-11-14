@@ -55,7 +55,7 @@ public class AuthFilter implements Filter {
                 );
 
                 if (StringUtils.hasText(url) && (httpServletRequest.getMethod().equals("PUT")) &&
-                    (url.startsWith("/tutors/") || url.startsWith("/lectures/"))){
+                    (url.startsWith("/s/") || url.startsWith("/lectures/"))){
                     String authority = (String) info.get(JwtUtil.AUTHORIZATION_KEY);
 
                     if (!Objects.equals(authority, AdminRoleEnum.MANAGER.getAuthority())) {
