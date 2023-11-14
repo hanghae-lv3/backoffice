@@ -24,11 +24,11 @@ public class TutorService {
     }
 
     public RegistTutorResponseDto getTutors(Long id) {
-        Optional<Tutor> tutor = tutorRepository.findById(id);
-        if(tutor.isPresent()){
-            return new RegistTutorResponseDto(tutor.get());
-        }
-        throw new EntityNotFoundException("등록되지 않은 강사입니다.");
+        Tutor tutor = tutorRepository.findById(id).orElseThrow(()->
+                new IllegalArgumentException("등록되지 않은 사용자입니다.")
+                );
+        return new RegistTutorResponseDto(tutor);
     }
+
 
 }
